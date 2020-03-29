@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 2.8.12)
 project(example)
 
-#set (CMAKE_CXX_STANDARD 11)
-#set (CMAKE_CXX_STANDARD_REQUIRED ON)
-
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
 find_package(ZeroMQ REQUIRED)
 
