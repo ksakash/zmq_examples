@@ -1,0 +1,48 @@
+# zmq_examples
+examples for publisher-subscriber using zmq lib
+
+Dependency: libzmq3-dev
+
+# install by using:
+$ sudo apt install libzmq3-dev
+
+--------------------------------------
+
+Build zmq_examples:
+
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make
+
+--------------------------------------
+
+Test:
+
+# from the build directory
+
+$ ./pub # runs publisher
+
+$ ./sub # runs subscriber
+# expected output
+[B] We would like to see this
+[B] We would like to see this
+[B] We would like to see this
+
+
+# to test req-resp
+
+$ ./req # runs request socket
+# expected output
+Sending Hello 0...
+Received World (0)
+Sending Hello 1...
+Received World (1)
+Sending Hello 2...
+Received World (2)
+
+$ ./rep # runs response socket
+# expected output
+Received Hello
+Received Hello
+Received Hello
