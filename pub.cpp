@@ -1,6 +1,26 @@
+#include <iostream>
+#include <unistd.h>
+
 #include "zmq.hpp"
 #include "zmq_addon.hpp"
-#include "zhelpers.hpp"
+
+bool s_send (zmq::socket_t & socket, const std::string & string, int flags = 0) {
+
+    zmq::message_t message(string.size());
+    memcpy (message.data(), string.data(), string.size());
+
+    bool rc = socket.send (message, flags);
+    return (rc);
+}
+
+bool s_sendmore (zmq::socket_t & socket, const std::string & string) {
+
+    zmq::message_t message(string.size());
+    memcpy (message.data(), string.data(), string.size());
+
+    bool rc = socket.send (message, ZMQ_SNDMORE);
+    return (rc);
+}
 
 int main () {
     //  Prepare our context and publisher

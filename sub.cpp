@@ -2,7 +2,14 @@
 
 #include "zmq.hpp"
 #include "zmq_addon.hpp"
-#include "zhelpers.hpp"
+
+std::string s_recv (zmq::socket_t & socket, int flags = 0) {
+
+    zmq::message_t message;
+    socket.recv(&message, flags);
+
+    return std::string(static_cast<char*>(message.data()), message.size());
+}
 
 int main () {
     //  Prepare our context and subscriber
@@ -17,7 +24,7 @@ int main () {
         std::string address = s_recv (subscriber);
         //  Read message contents
         std::string contents = s_recv (subscriber);
-        
+
         std::cout << "[" << address << "] " << contents << std::endl;
     }
     return 0;
